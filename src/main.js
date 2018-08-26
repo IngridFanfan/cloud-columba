@@ -8,15 +8,23 @@ import VueRouter from 'vue-router';
 //import Routers from './router.js';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+//global register vue wizard
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+
 
 import { Button, Table } from 'iview';
+
 Vue.component('Button', Button);
 Vue.component('Table', Table);
+
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
 Vue.use(iView);
+Vue.use(VueFormWizard);
+
 
 /*const RouterConfig = {
     routes: Routers
