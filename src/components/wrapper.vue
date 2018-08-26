@@ -1,19 +1,20 @@
 <template>
   <div class="wrapper">
     <side-bar></side-bar>
-    <!--<main-panel></main-panel>-->
-
+    <main-panel></main-panel>
 
   </div>
 </template>
 
 <script>
-import sideBar from './sideBar';
+import sideBar from './navigation/sideBar';
+import mainPanel from './display/mainPanel';
 
 export default {
   name: 'wrapper',
   components: {
-    'side-bar': sideBar
+    'side-bar': sideBar,
+    'main-panel': mainPanel
   },
   data() {
     return {

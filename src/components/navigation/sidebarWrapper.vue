@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import sideUser from './sideUser';
-import sideNav from './sideNav';
+import sideUser from './userNav/sideUser';
+import sideNav from './userNav/sideNav';
 
 export default {
   name: 'wrapper',

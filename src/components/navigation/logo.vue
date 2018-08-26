@@ -33,6 +33,7 @@ export default {
     position: relative;
     z-index: 4;
     display: block;
+    text-align:center; /*我填的，原文档没找到字体居中的css*/
 }
 
 .logo:before {
@@ -60,6 +61,7 @@ a.logo-normal {
     transition: all 150ms ease-in;
 }
 a {
-text-decoration:none; /*CSS下划线效果：无下划线。不知道为什么没有这个css*/
+    text-decoration:none;
+    background-color: transparent;
 }
 </style>

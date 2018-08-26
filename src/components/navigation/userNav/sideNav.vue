@@ -2,7 +2,7 @@
     <ul class="nav">
       <li v-for="page in pages">
         <nav-page>
-          <i :class="page.icon">{{page.icon}}</i>
+          <i :class="page.iconName" slot="ti-clipboard">{{page.icon}}</i>
           <p>{{page.name}}
             <b class="caret"></b>
           </p>
@@ -11,6 +11,7 @@
     </ul>
 
 </template>
+<!--logo有问题，logo和内容的上下行有问题，不在同一行上。像是多加了一个标签的缘故-->
 
 <script>
 import navPage from './navPage';
@@ -26,12 +27,14 @@ export default {
          {
           name:"New Project",
           icon: "N",
-          hrefName:"newprojects"
+          hrefName:"newprojects",
+          iconName:"ti-panel"
          },
          {
            name:"Histroy",
            icon: "H",
-           hrefName:"histoty"
+           hrefName:"histoty",
+           iconName:"ti-clipboard"
          }
        ]
      }
@@ -64,8 +67,8 @@ export default {
   .nav p {
     margin: 0;
     line-height: 30px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 400;
     text-transform: uppercase;
     position: relative;
     transform: translate3d(0px, 0, 0);

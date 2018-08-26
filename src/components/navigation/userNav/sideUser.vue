@@ -1,19 +1,19 @@
 <template>
   <div class="user">
     <div class="photo">
-	     <img src="../assets/img/face-2.jpg">
+	     <img src="../../../assets/img/face-2.jpg">
 	   </div>
      <div class="info">
 						<a data-toggle="collapse" href="#" class="collapsed" aria-expanded="true">
 	             <span>
 								Max Mustermann
-		            <b class="caret"></b>
+		           <!-- <b class="caret"></b>-->
 							</span>
 	           </a>
 	   </div>
   </div>
 </template>
-
+<!--第44行，为什么一定要指明是 .user .photo呢？-->
 <script>
 export default {
   name: 'sideUser'
@@ -41,8 +41,11 @@ export default {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.photo {
+.user .photo {
     border-color: rgba(255, 255, 255, 0.3);
+}
+.photo {
+    /*border-color: rgba(255, 255, 255, 0.3);*/
     border: 2px solid;
     width: 34px;
     height: 34px;
@@ -75,5 +78,6 @@ export default {
     line-height: 22px;
     display: block;
     position: relative;
+    font-size: 14px; /*我加的，原来的字体太小了*/
 }
 </style>

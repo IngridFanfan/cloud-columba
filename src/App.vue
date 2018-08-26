@@ -1,27 +1,27 @@
 <template>
   <div id="app">
-    <side-Bar></side-Bar>
+    <wrapper></wrapper>
   </div>
 </template>
 
 <script>
-import sideBar from './components/sideBar';
+import wrapper from './components/wrapper';
 
 export default {
   name: 'App',
   components:{
-    'side-Bar': sideBar
+    'wrapper': wrapper
   }
 }
 </script>
 
 <style>
-/*#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}*/
+#app {
+  background-color: #66615b; /*color和background-color都不管用*/
+  font-size: 14px;
+  font-family: 'Muli', Arial, sans-serif;
+  line-height: 1.42857143;
+  margin: 0;
+  display: block;
+}
 </style>
