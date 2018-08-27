@@ -3,49 +3,28 @@
 
       <div class="container-fluid">
         <card :project="process">
+          <!--vue wizard with i-button-->
           <form-wizard @on-complete="onComplete"
-                      title="This is a new title"
-                      subtitle="And a new subtitle"
-                      shape="tab"
-                      back-button-text="Go back!"
-                      next-button-text="Go next!"
-                      finish-button-text="We're there"
-                      color="#777777">
-            <tab-content title="Personal details"
-                         icon="ti-user">
-              My first tab content
-            </tab-content>
-            <tab-content title="Additional Info"
-                         icon="ti-settings">
-              My second tab content
-            </tab-content>
-            <tab-content title="Last step"
-                         icon="ti-check">
-              Yuhuuu! This seems pretty damn simple
-            </tab-content>
-        </form-wizard>
+                                shape="tab"
+                                color="#66615B">
+                      <tab-content title="Personal details"
+                                   icon="ti-user">
+                        My first tab content
+                      </tab-content>
+                      <tab-content title="Additional Info"
+                                   icon="ti-settings">
+                        My second tab content
+                      </tab-content>
+                      <tab-content title="Last step"
+                                   icon="ti-check">
+                        Yuhuuu! This seems pretty damn simple
+                      </tab-content>
 
-<!--<pre v-html="prettyJSON"></pre>
-<form-wizard @on-complete="onComplete"
-validate-on-back
-ref="wizard"
-:start-index.sync="activeTabIndex"
-shape="circle" color="#20a0ff" error-color="#ff4949">
-  <tab-content title="Personal details" icon="ti-user"
-   :before-change="() => validate('firstStep')">
-    <first-step ref="firstStep" @on-validate="onStepValidate"></first-step>
-    <el-button @click="forceClearError">Try to clear the error</el-button>
-  </tab-content>
-  <tab-content title="Additional Info" icon="ti-settings"
-  :before-change="() => validate('secondStep')">
-    <second-step ref="secondStep" @on-validate="onStepValidate"></second-step>
-  </tab-content>
-  <tab-content title="Last step" icon="ti-check">
-    Your data
-   <pre v-html="prettyJSON"></pre>
-  </tab-content>
+                      <i-button slot="prev" type="primary" shape="circle" size="large" class="btn-info">Back</i-button>
+                      <i-button slot="next" type="primary" shape="circle">Next</i-button>
+                      <i-button slot="finish" type="primary" shape="circle">Finish</i-button>
+                  </form-wizard>
 
-</form-wizard>-->
         </card>
       </div>
 
@@ -139,4 +118,9 @@ pre .key {
   color: green;
 }
 
+.btn-info{
+  min-width:180px;
+  background-color: #68B3C8;
+  border-color: #68B3C8
+}
 </style>
