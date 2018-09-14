@@ -10,7 +10,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li v-for="header in headers">
                 <nav-page>
-                  <i :class="header.iconName">{{header.icon}}</i>
+                  <i :class="header.iconName"></i>
                   <p>{{header.name}}</p>
                 </nav-page>
               </li>
@@ -64,17 +64,14 @@ export default {
       headers:[
         {
           iconName: "ti-panel",
-          icon:"S",
           name:"Stats"
         },
         {
           iconName: "ti-bell",
-          icon:"N",
           name:"Notification"
         },
         {
           iconName: "ti-settings",
-          icon:"S",
           name:"Settings"
         }
       ]

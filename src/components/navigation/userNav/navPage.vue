@@ -10,6 +10,7 @@
 <!--以及循环的时候，把其中一个p换成span。甚至是更多的内容？see navbar -> notification  -->
 
 <script>
+
 export default {
   name: 'navPage',
   props:{

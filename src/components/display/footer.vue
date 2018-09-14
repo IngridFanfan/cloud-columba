@@ -38,6 +38,7 @@ export default {
     position: relative;
     line-height: 20px;
     display: block;
+
 }
 
 .footer .copyright {

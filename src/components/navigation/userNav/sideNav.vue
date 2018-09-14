@@ -2,7 +2,7 @@
     <ul class="nav">
       <li v-for="page in pages">
         <nav-page>
-          <i :class="page.iconName" slot="ti-clipboard">{{page.icon}}</i>
+          <i :class="page.iconName" slot="ti-clipboard"></i>
           <p>{{page.name}}
             <b class="caret"></b>
           </p>
@@ -26,13 +26,11 @@ export default {
        pages:[
          {
           name:"New Project",
-          icon: "N",
           hrefName:"newprojects",
           iconName:"ti-panel"
          },
          {
            name:"Histroy",
-           icon: "H",
            hrefName:"histoty",
            iconName:"ti-clipboard"
          }

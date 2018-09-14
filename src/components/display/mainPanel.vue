@@ -1,3 +1,5 @@
+<!--解决main-panel background color 下方留白的问题： overflow: auto; -->
+
 <template>
   <div class="main-panel">
 
@@ -38,6 +40,7 @@ export default {
     float: right;
     width: calc(100% - 260px);
     min-height: 100%;
+    overflow: auto;
     transition-timing-function: linear,linear,ease;
 }
 

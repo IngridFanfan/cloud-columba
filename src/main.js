@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 //import router from './router'
 import VueRouter from 'vue-router';
+import 'bootstrap';
 //import App from 'components/app.vue';
 //import Routers from './router.js';
 import iView from 'iview';
@@ -11,6 +12,10 @@ import 'iview/dist/styles/iview.css';
 //global register vue wizard
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+
+//连级多选器 npm i cascader-multi --save
+import cascaderMulti from "cascader-multi";
+Vue.use(cascaderMulti);
 
 
 import { Button, Table } from 'iview';

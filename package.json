@@ -13,6 +13,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "cascader-multi": "^2.0.3",
     "element-ui": "^2.4.6",
     "iview": "^3.0.1",
     "json-pretty-html": "^1.1.2",

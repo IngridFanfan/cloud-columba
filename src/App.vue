@@ -6,6 +6,8 @@
 
 <script>
 import wrapper from './components/wrapper';
+import './assets/sass/themify-icons/themify-icons.css'; //import icons globally here. But dont't know why the following command does't work. Both 'themify-icons.css' are the same.
+//import './assets/css/themify-icons.css';
 
 export default {
   name: 'App',

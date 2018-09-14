@@ -16,7 +16,7 @@
 
 
 export default {
-  name: 'Card',
+  name: 'myCard',
   props:{
     project:{
       type:Object, // type = subject!!!

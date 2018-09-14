@@ -1,90 +1,85 @@
+<!--问题：如何只增加titlede字体大小？在form-wizard中使用style="font-size:1.2em;" 会增大所有的字-->
+
 <template>
   <div class="content">
 
       <div class="container-fluid">
-        <card :project="process">
+        <my-card :project="process">
           <!--vue wizard with i-button-->
           <form-wizard @on-complete="onComplete"
                                 shape="tab"
-                                color="#66615B">
-                      <tab-content title="Personal details"
+                                color="#66615B"
+                                :title="title"
+                                :subtitle="subtitle"
+                                >
+                      <tab-content title="RULES"
                                    icon="ti-user">
-                        My first tab content
+                        <first-step></first-step>
                       </tab-content>
-                      <tab-content title="Additional Info"
+                      <tab-content title="MODULES"
                                    icon="ti-settings">
-                        My second tab content
+                        <second-step></second-step>
                       </tab-content>
-                      <tab-content title="Last step"
+                      <tab-content title="NETLIST"
                                    icon="ti-check">
-                        Yuhuuu! This seems pretty damn simple
+                        <third-step></third-step>
                       </tab-content>
 
-                      <i-button slot="prev" type="primary" shape="circle" size="large" class="btn-info">Back</i-button>
-                      <i-button slot="next" type="primary" shape="circle">Next</i-button>
-                      <i-button slot="finish" type="primary" shape="circle">Finish</i-button>
+                      <template v-for="step in steps">
+                        <i-button :slot="step.slotName" type="primary" shape="circle" size="large" class="btn-info">{{ step.stepName }}</i-button>
+                      </template>
                   </form-wizard>
 
-        </card>
+        </my-card>
       </div>
 
   </div>
 </template>
 
 <script>
-import Card from './card'
-import FirstStep from "../component/FirstStep.vue";
-import SecondStep from "../component/SecondStep.vue";
-import prettyJSON from "../../prettyJson.js";
+import myCard from './card'
+import firstStep from './firstStep'
+import secondStep from './secondStep'
+import thirdStep from './thirdStep'
 
 export default {
   name: 'appContent',
   components:{
-    'card': Card,
-    FirstStep,
-    SecondStep
+    'my-card': myCard,
+    'first-step':firstStep,
+    'second-step':secondStep,
+    'third-step':thirdStep,
   },
   data () {
     return {
+      title: 'Process Creating',
+      subtitle:'Following these steps to create your design process',
       process:
         {
-          title: 'Process Creating',
-          subTitle: 'Following these steps to create your design process'
+          title: '',
+          subTitle: ''
         },
-        inalModel: {},
-      activeTabIndex: 0
+        steps:[
+          {slotName:'prev',stepName:'Back'},
+          {slotName:'next',stepName:'Next'},
+          {slotName:'finish',stepName:'Done'}
+        ]
     }
   },
-  //wizard
-  computed: {
-  prettyJSON() {
-    return prettyJSON(this.finalModel);
+  methods: {
+    onComplete: function(){
+     alert('Yay. Done!');
   }
-},
-methods: {
-  onComplete() {
-    alert("Yay. Done!");
-  },
-  forceClearError() {
-    this.$refs.wizard.tabs[this.activeTabIndex].validationError = null;
-  },
-  validate(ref) {
-    return this.$refs[ref].validate();
-  },
-  onStepValidate(validated, model) {
-    if (validated) {
-      this.finalModel = { ...this.finalModel, ...model };
-    }
-  }
-}
+ }
 }
 </script>
 
 <style scoped>
 .main-panel > .content {
-    padding: 30px 15px 0 15px;
+    padding: 30px 15px 15px 15px;
     padding-left: 10%;
-    min-height: calc(100% - 172px);
+    min-height: calc(100% - 160px);
+    /*background-color: #f4f3ef;*/
 }
 .container-fluid {
     padding-right: 15px;
@@ -99,6 +94,7 @@ methods: {
 }
 
 /*from Wizard*/
+
 pre {
   overflow: auto;
 }
@@ -119,8 +115,12 @@ pre .key {
 }
 
 .btn-info{
-  min-width:180px;
+  min-width:140px;
   background-color: #68B3C8;
   border-color: #68B3C8
+}
+.btn-info:hover{
+  background-color: #589ab3;
+  border-color: #589ab3
 }
 </style>
