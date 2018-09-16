@@ -1,10 +1,13 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+
 import App from './App'
 //import router from './router'
 import VueRouter from 'vue-router';
 import 'bootstrap';
+import './assets/css/bootstrap.min.css';
+
 //import App from 'components/app.vue';
 //import Routers from './router.js';
 import iView from 'iview';
@@ -16,6 +19,11 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 //连级多选器 npm i cascader-multi --save
 import cascaderMulti from "cascader-multi";
 Vue.use(cascaderMulti);
+
+//vuelidate
+
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate);
 
 
 import { Button, Table } from 'iview';

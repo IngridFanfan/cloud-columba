@@ -1,18 +1,15 @@
 <template>
   <div class="thirdStep">
-    <!--
-    add New Module的测试
-    <add-new-module></add-new-module>
-    -->
 
     <!--
     cascader的测试
-    <module-cascader></module-cascader>
-    -->
+    <module-cascader></module-cascader>-->
+
+
 
   <flow-content :title="title">
 
-
+  <netlist-card v-for="moduleList in moduleLists" :moduleName="moduleList"></netlist-card>
   </flow-content>
 
 
@@ -22,16 +19,22 @@
 
 <script>
 import addNewModule from '../component/newModule'
-import moduleCascader from '../component/cascader'
+import netlistCard from '../component/netlistCard'
 import flowContent from '../component/flowContent'
 
 
 export default {
   name: 'thirdStep',
+  props: {
+    modules:{
+      type:Object,
+      required:true,
+
+    }
+  },
   components: {
-    addNewModule,
-    moduleCascader,
-    flowContent
+    flowContent,
+    netlistCard
   },
   data () {
     return {
@@ -43,7 +46,8 @@ export default {
             part3:' to create new conntections for NETLIST'
           },
           description: 'Here are some descriptions about these NETLIST which you should read them first.'
-        }
+        },
+        moduleLists:['inlet','chamber','ring','outlet']
     }
   }
 }

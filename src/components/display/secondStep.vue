@@ -1,40 +1,50 @@
 <!--
-在card的title上加了click，不然右边的+太小了，很难点。
-不知道为什么这里的collapse和card都不需要加 i-，因为不是原生标签？
-
-问题：
-1，card的内容框弄不掉。如果用 <card title="+++"> 没有内容框，可是里面没法加<span>,样式，和 extra
-2，@click的函数尚未修改
-3，collapse 的左右边框。内容展示和添加module的样式不一样，一个是collapse一个是card，因为一个能展开。
+TODO：新添加的折叠面板自动展开，已经打开的都自动关闭
+times 修改的问题，页面重新渲染即会重新获得input焦点
 
 -->
 
 <template>
   <div class="secondStep">
     <flow-content :title="title">
-      <Collapse v-model="value" simple>
-        <Panel name="1">
-            史蒂夫·乔布斯
-            <p slot="content">史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。</p>
+      <div v-if="modules.length==0" class="emptyNotice">No Modules defined</div>
+      <Collapse class="moduleGruppe" v-model="value">
+        <Panel class="singleModule" :name="''+index" v-for="(module,index) in modules">
+          <span class="singleName" @click="clearName(index)" contenteditable="true" >{{module.name}}</span><i-button class="delectIcon" type="text" icon="ios-trash-outline" @click="delectModule(index)"></i-button>
+            <div slot="content">
+              <i-form :label-width="90">
+                <form-item label="Module Type">
+                    <i-select placeholder="Select" v-model="module.type" style="width: 50%;">
+                        <Option value="p_i">Inlet</Option>
+                        <Option value="c">Chamber</Option>
+                        <Option value="r">Ring</Option>
+                        <Option value="p_o">Outlet</Option>
+                    </i-select>
+                </form-item>
+
+                <component :is="module.type" :ringData="module" :chamberData="module" :inletData="module" :outletData="module"></component>
+
+                <form-item label="Define it">
+                    <i-input class="inputTimes" v-model="module.count" placeholder='1' @blur.native="resetArrayLength(index)"/>
+                    <p class="times">times</p>
+                </form-item>
+
+                  <form-item label="Text">
+                      <i-input v-model="module.remark" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..." max="100" style="width: 80%;"/>
+                  </form-item>
+              </i-form>
+
+
+            </div>
         </Panel>
-        <Panel name="2">
-            斯蒂夫·盖瑞·沃兹尼亚克
-            <p slot="content">斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。</p>
-        </Panel>
-        <Panel name="3">
-            乔纳森·伊夫
-            <p slot="content">乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
-        </Panel>
+
       </Collapse>
 
-      <Row class="addRow">
-        <Col span="100%">
-            <Card>
-                <p slot="title" @click="addModule">Click the <span class="addModule"> + </span> to create a new module</p>
-                <p slot="extra" class="addModule" @click="addModule">+</p>
-            </Card>
-        </Col>
-      </Row>
+      <Card class="addModuleCard" style="width:100%;height:40px">
+        <div style="text-align:center">
+            <h5 @click="addModule">Click <span class="addModule"> + </span> to create a new module</h5>
+        </div>
+    </Card>
     </flow-content>
 
 
@@ -44,15 +54,31 @@
 
 <script>
 import flowContent from '../component/flowContent'
+import ring from '../component/moduleParameter/ring'
+import chamber from '../component/moduleParameter/chamber'
+import inlet from '../component/moduleParameter/inlet'
+import outlet from '../component/moduleParameter/outlet'
 
 export default {
   name: 'secondStep',
+  props: {
+    modules:{
+      type:[Array],
+      required:true,
+
+    }
+  },
+
   components:{
-    'flow-content': flowContent
+    'flow-content': flowContent,
+    'r':ring,
+    'c':chamber,
+    'p_i':inlet,
+    'p_o':outlet
   },
   data () {
     return {
-      value: '1',
+      value: '',
       title:
         {
           header:{
@@ -66,18 +92,54 @@ export default {
   },
   methods: {
     addModule() {
-      this.$Message.info('This is a info tip');
 
+      this.modules.push({
+        type:'',
+        name:'Untitled '+(this.modules.length),
+        count:1,
+        remark:'',
+        children:[]
+      });
+      let vm = this;
+      this.$nextTick().then(function(){
+        vm.value=[''+(vm.modules.length-1)]
+      })
+
+    },
+    clearTitle: function(index){
+      this.modules[index].name='';
+
+    },
+    delectModule:function(index){
+      this.modules.splice(index,1);
+    },
+    resetArrayLength:function(index){
+      this.modules[index].children.length=this.modules[index].count;
+      alert ("skjdfh");
     }
   }
 }
 </script>
 
+<style>
+.ivu-collapse-header{
+  background-color: white;
+}
+
+
+
+</style>
+
 <style scoped>
-span, p.addModule{
-  font-size: 16px;
+span.addModule, p.addModule{
+  font-size: 22px;
   font-weight: bolder;
   color:#68B3C8;
+}
+
+h5{
+  margin-top:-1%;
+  font-size: 1.1em;
 }
 
 .addRow{
@@ -85,5 +147,33 @@ span, p.addModule{
   margin-bottom: 20px;
   border: 30px;
 }
+
+.addModuleCard{
+  margin-top: 10px;
+}
+.moduleGruppe{
+  margin-top: -2px;
+}
+
+div.emptyNotice{
+  text-align: center;
+  color: #666;
+  font-size: 0.8em;
+  border-color:black;
+  border: 2px solid;
+
+}
+
+span.singleName{
+
+}
+
+.delectIcon{
+
+  position: absolute;
+top: 10%;
+right: 8px;
+}
+
 
 </style>

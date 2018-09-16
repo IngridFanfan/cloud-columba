@@ -10,6 +10,7 @@
 import sideBar from './navigation/sideBar';
 import mainPanel from './display/mainPanel';
 
+
 export default {
   name: 'wrapper',
   components: {

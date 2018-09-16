@@ -38,7 +38,7 @@ h5 {
     padding: 20px;
     font-size: 1.25em;
     font-weight: 400;
-    line-height: 0.6em;
+    line-height: 1.2em;
     color: inherit;
     display: block;
 }

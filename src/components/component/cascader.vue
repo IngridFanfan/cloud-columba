@@ -7,9 +7,9 @@
 -->
 
 <template>
-  <div class="cascader">
+  <div class="cascader"  style="width:100%">
     <card class="cascaderCard" dis-hover>
-    <cascaderMulti class="multiCascader" v-model="end_code" :data="end_codes" placeholder="choose modules for connection"> </cascaderMulti>
+
     <i-button class="addButton" type="primary" shape="circle">Confirm</i-button>
     </card>
 

@@ -1,6 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
+
         <h4 class="card-title">{{ project.title }}</h4>
         <p class="category">{{ project.subTitle }}</p>
     </div>
