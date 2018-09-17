@@ -32,6 +32,8 @@ Vue.component('Button', Button);
 Vue.component('Table', Table);
 
 
+
+
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
@@ -45,6 +47,7 @@ Vue.use(VueFormWizard);
 const router = new VueRouter(RouterConfig);*/
 
 /* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   //router,

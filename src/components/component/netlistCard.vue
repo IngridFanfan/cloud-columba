@@ -1,9 +1,14 @@
 <template>
-  <div class="netlistCard">
-
-    <card class="netlistCard" :title="moduleName"></card>
-
-  </div>
+       <Panel class="netlistCard" >
+         {{module.name}}
+         <div slot="content">
+           <Collapse  class="itemFromGroupe">
+             <Panel v-for="(child,index) in module.children" :key="module.name+'_'+index">
+               {{module.name+'_'+index}}
+             </Panel>
+           </Collapse>
+         </div>
+       </Panel>
 </template>
 
 <script>
@@ -12,8 +17,13 @@
 export default {
   name: 'netlistCard',
   props:{
-    moduleName:{
-      type:String
+    module:{
+      type:Object,
+      require:true
+    },
+    modules:{
+      type:Array,
+      require:true
     }
 
   },

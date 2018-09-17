@@ -3,7 +3,7 @@
 
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2">
+          <div class="col-md-11 col-md-offset-2">
 
         <my-card :project="process">
     <form-wizard @on-complete="onComplete"
@@ -18,13 +18,15 @@
         <first-step ref="step1" :rules="formData.data.rules"></first-step>
       </tab-content>
 
-      <tab-content title="MODULES" icon="ti-settings">
+      <tab-content title="MODULES"
+                   icon="ti-settings"
+                   :before-change="()=>ranking()">
         <second-step :modules="formData.subModules"></second-step>
       </tab-content>
 
       <tab-content title="NETLIST"
                    icon="ti-check">
-        <third-step :modules="formData"></third-step>
+        <third-step :modules="formData.subModules"></third-step>
       </tab-content>
 
     </form-wizard>
@@ -61,11 +63,6 @@ export default {
           title: '',
           subTitle: ''
         },
-        /*steps:[
-          {slotName:'prev',stepName:'Back'},
-          {slotName:'next',stepName:'Next'},
-          {slotName:'finish',stepName:'Done'}
-        ],*/
         formData:{
           type:{},
           name:'',
@@ -85,6 +82,16 @@ export default {
   validateStep(name) {
       var refToValidate = this.$refs[name];
       return refToValidate.validate();
+    },
+    ranking(){
+
+      this.formData.subModules.sort(function(a,b){
+        return a.name > b.name;
+
+      }
+      );
+      //console.log(this.formData.subModules);
+      return true;
     }
 
  }
